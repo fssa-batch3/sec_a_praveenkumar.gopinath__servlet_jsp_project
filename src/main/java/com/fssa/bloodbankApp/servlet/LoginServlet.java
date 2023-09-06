@@ -1,7 +1,6 @@
 package com.fssa.bloodbankApp.servlet;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -24,24 +23,21 @@ public class LoginServlet extends HttpServlet {
 			throws ServletException, IOException {
 		String email = request.getParameter("email");
 		String password = request.getParameter("password");
-		User user = new User(email, password);
-
-		PrintWriter out = response.getWriter();
+		User user = new User();
+		user.setEmail(email);
+		user.setPassword(password);
 
 		UserService loginService = new UserService();
 		try {
-			if (loginService.loginUser(user)) {
-				out.println("Login successful!");
-				HttpSession session = request.getSession();
-				session.setAttribute("loggedInEmail", email);
-//				request.setAttribute("loggedInEmail", email); // Only the next page or servlet can access the request scope attribute values. 
-				RequestDispatcher dispatcher = request.getRequestDispatcher("home.jsp");
-				dispatcher.forward(request, response);
-			} else {
-				response.sendRedirect("login.jsp?errorMessage=Email is not registered.");
-			}
+			loginService.loginUser(user);
+			HttpSession session = request.getSession();
+			session.setAttribute("loggedInEmail", email);
+			response.sendRedirect("GetAllRequest");
+
 		} catch (ServiceException e) {
-			response.sendRedirect("login.jsp?errorMessage=" + e.getMessage());
+			request.setAttribute("errorMessage", "Login Failed : " + e.getMessage());
+			RequestDispatcher dispatcher = request.getRequestDispatcher("login.jsp");
+			dispatcher.forward(request, response);
 		}
 
 //		if (email == null || "".equals(email)) {
