@@ -22,7 +22,7 @@
 
 	<%
 	String loggedInEmail = (String) session.getAttribute("loggedInEmail");
-
+ 
 	if (loggedInEmail == null) {
 		response.sendRedirect("login.jsp");
 	}
