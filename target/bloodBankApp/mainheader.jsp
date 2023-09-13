@@ -116,7 +116,7 @@ img {
 			<h2 class="loginUserEmail">John D.</h2>
 		</header>
 		<a  class="closebtn" onclick="closeNav()">&times;</a>
-		<a href="#">Home</a> <a href="#">Login</a> <a href="#">Registeration</a>
+		<a href="#">Home</a> <a href="home.jsp">Login</a> <a href="register.html">Register</a>
 	</div>
 
 	<div id="main">

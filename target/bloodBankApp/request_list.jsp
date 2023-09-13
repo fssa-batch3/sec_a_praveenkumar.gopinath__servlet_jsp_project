@@ -22,11 +22,11 @@
 			</tr>
 		</thead>
 		<tbody>
-			<c:forEach var="task" items="${requestList}" varStatus="loop">
+			<c:forEach var="request" items="${requestList}" varStatus="loop">
 
 				<tr>
 					<td><c:out value="${loop.index + 1}" /></td>
-					<td><c:out value="${requser.request}" /></td>
+					<td><c:out value="${request.title}" /></td>
 					
 					<!--<td><form name="submitForm" method="POST"
 							action="/EditTaskServlet">
@@ -38,6 +38,6 @@
 		</tbody>
 	</table>
 	<%session.removeAttribute("requestList"); %>
-	<a href="addNewTask"><button>Add New Task</button></a>
+	<!-- <a href="addNewTask"><button>Add New Request</button></a> -->
 </body>
 </html>

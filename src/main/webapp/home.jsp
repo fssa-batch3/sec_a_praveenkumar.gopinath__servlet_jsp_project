@@ -16,17 +16,28 @@
 <title>Home Page</title>
 </head>
 <body>
-	<jsp:include page="mainheader.jsp"></jsp:include>
-	<h1>Welcome to Blood-Bank-Management-System</h1>
 
+	<jsp:include page="header.jsp"></jsp:include>
+	<h1>Welcome to Bloodbank App</h1>
 
 	<%
 	String loggedInEmail = (String) session.getAttribute("loggedInEmail");
- 
+
 	if (loggedInEmail == null) {
 		response.sendRedirect("login.jsp");
 	}
 	%>
-	
+
+	<a href="request.jsp"><button>Donor Details</button>
+		<br>
+	<br></a>
+
+
+	<p>
+		Logged In user:
+		<%=loggedInEmail%>
+	</p>
+	<a href="LogoutServlet">logout</a>
+
 </body>
 </html>
